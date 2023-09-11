@@ -13,18 +13,17 @@ export type SnippetPropsType = {
 }
 
 export function Snippet(snippetData: SnippetPropsType) {
+  let snippetIcon = <span className="me-2"><FontAwesomeIcon icon={snippetData.icon} size="xl" fixedWidth /></span>
   return (
       <div className={"card h-100 " + (snippetData.color)} key={snippetData.id}>
         <div className="card-body d-flex align-items-center">
           { snippetData.dataCount > 0 ?
             <span className="card-text fst-italic normalize" style={{fontSize: "1rem"}}>
-                <span className="me-2"><FontAwesomeIcon icon={snippetData.icon} size="xl" /></span>
-                {snippetData.title}
+              {snippetIcon}{snippetData.title}
             </span>
           :
             <p className="card-text fst-italic normalize" style={{fontSize: "1rem"}}>
-                <span className="me-2"><FontAwesomeIcon icon={snippetData.icon} size="xl" /></span>
-                {snippetData.title}
+              {snippetIcon}{snippetData.title}
             </p>
           }
           <a href={snippetData.link} className="stretched-link"> </a>

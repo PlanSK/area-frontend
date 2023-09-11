@@ -30,19 +30,22 @@ function App() {
       />
       <main>
         <div className="container">
-          <StaffDashboard unverifiedWorkshifts={dashboardData.unverifiedWorkshifts}
-                          inactiveUsers={dashboardData.inactiveUsers}
-                          waitExplanationMisconducts={dashboardData.waitExplanationMisconducts}
-                          waitDecisionMisconducts={dashboardData.waitDecisionMisconducts}
-          />
-          <EmployeeDashboard workshiftsCount={employeeData.workshiftsCount}
-                             summaryEarnings={employeeData.summaryEarnings}
-                             penaltySum={employeeData.penaltySum}
-                             penaltyCount={employeeData.penaltyCount}
-                             waitExplanationMisconducts={employeeData.waitExplanationMisconducts}
-                             isCashier={employeeData.isCashier}
-                             summaryShortage={employeeData.summaryShortage}
-          />
+          {data.profileData.staffPermissions ?
+            <StaffDashboard unverifiedWorkshifts={dashboardData.unverifiedWorkshifts}
+                            inactiveUsers={dashboardData.inactiveUsers}
+                            waitExplanationMisconducts={dashboardData.waitExplanationMisconducts}
+                            waitDecisionMisconducts={dashboardData.waitDecisionMisconducts}
+            />
+          :
+            <EmployeeDashboard workshiftsCount={employeeData.workshiftsCount}
+                              summaryEarnings={employeeData.summaryEarnings}
+                              penaltySum={employeeData.penaltySum}
+                              penaltyCount={employeeData.penaltyCount}
+                              waitExplanationMisconducts={employeeData.waitExplanationMisconducts}
+                              isCashier={employeeData.isCashier}
+                              summaryShortage={employeeData.summaryShortage}
+            />
+          }
         </div>
       </main>
     </div>

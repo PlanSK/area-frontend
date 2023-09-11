@@ -1,4 +1,29 @@
 import React from 'react';
+import { ProfileDataType } from './Header'
+import { v1 } from 'uuid';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconName } from '@fortawesome/fontawesome-svg-core';
+
+export type ProfileIconPropsType = {
+  profileImage: string
+  profileName: string
+}
+
+type MenuItemsType = {
+  id: string
+  link: string
+  icon: IconName
+  title: string
+  divider: boolean
+}
+
+type ProfileMenuPropsType = {
+  staffPermissions: boolean
+}
+
+type MenuItemPropsType = {
+  item: MenuItemsType
+}
 
 export function ProfileBtn() {
   return (
@@ -11,63 +36,59 @@ export function ProfileBtn() {
 }
 
 
+function ProfileIcon(props: ProfileIconPropsType) {
+  return (
+    <div className="nav-link dropdown-toggle clear-after-toggle d-flex align-items-center" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      {props.profileImage ? <img src={props.profileImage} alt="" className="rounded-circle" style={{width: "3em", height: "3em"}}></img> : <FontAwesomeIcon icon='circle-user' size="2x" />}
+      <span className="text-secondary m-2 mobile-hide"><b>{props.profileName}</b></span>
+    </div>
+  );
+}
 
-function StaffMenuItems() {
-  let adminMenuArray = [
-    {link: '#', icon: 'fa-solid fa-screwdriver-wrench', text: 'Панель администрирования'},
-    {link: '#', icon: 'fa-solid fa-envelope-circle-check', text: 'Состояние активации сотрудников'},
+
+function ListItem(props: MenuItemPropsType) {
+  return (
+  <>
+    <li>
+      <a href={props.item.link} className="dropdown-item">
+        <FontAwesomeIcon icon={props.item.icon} fixedWidth /> {props.item.title}
+      </a>
+    </li>
+    {props.item.divider && <li><hr className="dropdown-divider" /></li>}
+  </>
+  );
+}
+
+
+function ProfileMenuItems(props: ProfileMenuPropsType) {
+  let staffMenuArray: Array<MenuItemsType> = [
+    { id: v1(), link: '/admin', icon: 'screwdriver-wrench', title: 'Панель администрирования', divider: false},
+    { id: v1(), link: '/activation', icon: 'envelope-circle-check', title: 'Состояние активации сотрудников', divider: true},
   ]
+  let commonMenuArray: Array<MenuItemsType> = [
+    { id: v1(), link: '', icon: 'sun', title: 'Сменить тему', divider: false},
+    { id: v1(), link: 'https://stat.artcore24.ru/', icon: 'network-wired', title: 'Состояние игровых зон', divider: false},
+    { id: v1(), link: '/profile', icon: 'user', title: 'Мой профиль', divider: true},
+    { id: v1(), link: '/logout', icon: 'arrow-right-from-bracket', title: 'Выйти', divider: false},
+  ]
+
   return (
-    {adminMenuArray.map((item) => {
-      <li><a className="dropdown-item" href={item.link}><i className={item.icon}></i>&nbsp;{item.text}</a></li>
-    }
-    )}
+    <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDarkDropdownMenuLink">
+      { props.staffPermissions && staffMenuArray.map((item: MenuItemsType) => <ListItem key={item.id} item={item} />)}
+      { commonMenuArray.map((item: MenuItemsType) => <ListItem key={item.id} item={item} />) }
+    </ul>
   );
 }
 
-function StaffMenu() {
-
-}
-
-function ProfileImage(props) {
-  if (props.profileImage) {
-    return <img src={props.profileImage} alt="" className="rounded-circle" style={{width: 3em; height: 3em;}}></img>
-  } else {
-    <i className="fa-solid fa-circle-user fa-2x"></i>
-  }
-}
-
-
-function ProfileIcon(props) {
-  let profileImage = {}
-  return (
-    <a className="nav-link dropdown-toggle clear-after-toggle d-flex align-items-center" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      <ProfileImage />
-    <span className="text-secondary m-2 mobile-hide"><b>{props.userName}</b></span>
-    </a>
-  );
-}
-
-
-export function ProfileMenu() {
-  let imageFile: string = '';
-  let staffPermissions: boolean = true;
+export function ProfileMenu(props: ProfileDataType) {
   return (
     <div className="collapse d-flex" id="navbarNavDarkDropdown">
       <ul className="navbar-nav">
-        <li className="nav-item dropdown">
-          <ProfileIcon />
-          <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDarkDropdownMenuLink">
-            { staffPermissions && <StaffMenuItems /> }
-            { staffPermissions && <li><hr className="dropdown-divider" /></li> }
-            <li>
-              <a href className="dropdown-item" onclick="switchTheme()"><i className="fa-regular fa-sun"></i> / <i className="fa-regular fa-moon"></i> Сменить тему</a>
-            </li>
-            <li><a href="https://stat.artcore24.ru/" className="dropdown-item"><i className="fa-solid fa-network-wired"></i> Состояние игровых зон</a></li>
-            <li><a className="dropdown-item" href="{% url 'show_user_detail' %}?next={{ request.path }}"><i className="fa-solid fa-user"></i>&nbsp;Мой профиль</a></li>
-            <li><hr className="dropdown-divider"></li>
-            <li><a className="dropdown-item" href="{% url 'logout' %}"><i className="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;Выйти</i></a></li>
-          </ul>
+        <li className="nav-item dropdown" key='menu'>
+          <ProfileIcon profileImage={props.profileImage}
+                       profileName={props.profileName}
+          />
+          <ProfileMenuItems staffPermissions={props.staffPermissions}/>
         </li>
       </ul>
     </div>

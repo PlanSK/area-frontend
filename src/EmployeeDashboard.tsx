@@ -41,13 +41,16 @@ export function EmployeeDashboard(props: EmployeeDashboardPropsType) {
               />
             </div>
           ))}
-          { props.isCashier && props.summaryShortage && <EmployeeSnippet  id={cashierBlock.id}
-                        color={cashierBlock.color}
-                        title={cashierBlock.title}
-                        icon={cashierBlock.icon}
-                        link={cashierBlock.link}
-                        indicatorValue={cashierBlock.indicatorValue}
+          { props.isCashier && props.summaryShortage && 
+            <div className="col-sm-12 col-md-3 mb-1" key={cashierBlock.id}>
+              <EmployeeSnippet  id={cashierBlock.id}
+                                color={cashierBlock.color}
+                                title={cashierBlock.title}
+                                icon={cashierBlock.icon}
+                                link={cashierBlock.link}
+                                indicatorValue={cashierBlock.indicatorValue}
               />
+            </div>
           }
           <hr className="w-100 mt-2" />
         </div>

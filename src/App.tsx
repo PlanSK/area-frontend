@@ -1,12 +1,20 @@
 import React from 'react';
-import { Header, HeaderData } from './Header';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { Maintoolbar, ToolbarData } from './Maintoolbar';
 import { StaffDashboard, StaffDashboardPropsType } from './StaffDashboard';
 import { EmployeeDashboard, EmployeeDashboardPropsType } from './EmployeeDashboard';
 
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
 function App() {
-  const data: HeaderData = {
-    profileData: {profileImage: "", profileName: "Anonymous", staffPermissions: true},
-    messagesCount: 0
+  const data: ToolbarData = {
+    profileData: {profileImage: "", profileName: "Sergey", staffPermissions: true},
+    messagesCount: 1
   }
   const dashboardData: StaffDashboardPropsType = {
     unverifiedWorkshifts: 1,
@@ -24,31 +32,13 @@ function App() {
     summaryShortage: 254.84
   }
   return (
-    <div className="App">
-      <Header profileData={data.profileData}
-              messagesCount={data.messagesCount}
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <Maintoolbar
+        profileData={data.profileData}
+        messagesCount={data.messagesCount}
       />
-      <main>
-        <div className="container">
-          {data.profileData.staffPermissions ?
-            <StaffDashboard unverifiedWorkshifts={dashboardData.unverifiedWorkshifts}
-                            inactiveUsers={dashboardData.inactiveUsers}
-                            waitExplanationMisconducts={dashboardData.waitExplanationMisconducts}
-                            waitDecisionMisconducts={dashboardData.waitDecisionMisconducts}
-            />
-          :
-            <EmployeeDashboard workshiftsCount={employeeData.workshiftsCount}
-                              summaryEarnings={employeeData.summaryEarnings}
-                              penaltySum={employeeData.penaltySum}
-                              penaltyCount={employeeData.penaltyCount}
-                              waitExplanationMisconducts={employeeData.waitExplanationMisconducts}
-                              isCashier={employeeData.isCashier}
-                              summaryShortage={employeeData.summaryShortage}
-            />
-          }
-        </div>
-      </main>
-    </div>
+    </ThemeProvider>
   );
 }
 

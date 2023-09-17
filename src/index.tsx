@@ -2,17 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {
-  faCalendarCheck, faUsers, faGraduationCap, faChartLine, faCalendarDays, faChartColumn,
-  faPaperPlane, faCircleUser, faScrewdriverWrench, faEnvelopeCircleCheck, faSun,
-  faNetworkWired, faUser, faArrowRightFromBracket, faRubleSign, faSackXmark, faCoins, faBook } from '@fortawesome/free-solid-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core';
-library.add(
-  faCalendarCheck, faUsers, faGraduationCap, faChartLine, faCalendarDays,
-  faChartColumn, faPaperPlane, faCircleUser, faScrewdriverWrench, faEnvelopeCircleCheck,
-  faSun, faNetworkWired, faUser, faArrowRightFromBracket, faRubleSign, faSackXmark,
-  faCoins, faBook,  
-);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

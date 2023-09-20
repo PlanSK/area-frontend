@@ -1,5 +1,5 @@
-import { Card, CardContent, Typography, CardActionArea, Divider, Badge, Avatar } from '@mui/material';
-import { deepOrange, indigo, purple } from '@mui/material/colors';
+import { Card, CardContent, CardActionArea, Badge, Chip } from '@mui/material';
+import { indigo, lightGreen } from '@mui/material/colors';
 import { SvgIconComponent } from '@mui/icons-material';
 
 export type DashboardCardPropsType = {
@@ -8,6 +8,7 @@ export type DashboardCardPropsType = {
     title: string
     color: string
     actionCount: number
+    link: string
 }
 
 export function DashboardCard(props: DashboardCardPropsType) {
@@ -19,14 +20,27 @@ export function DashboardCard(props: DashboardCardPropsType) {
             borderColor: indigo[900],
             background: props.color
         }} variant='outlined'>
-            <CardActionArea>
+            <CardActionArea href={props.link}>
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div" sx={{ fontStyle: 'italic' }}>
-                        <Badge variant='dot' color="primary" invisible={!props.actionCount} sx={{ marginRight: '1rem' }}>
-                            <Avatar sx={{ bgcolor: purple[200] }}>{props.icon}</Avatar>
-                        </Badge>
-                        {props.title}
-                    </Typography>
+                    <Badge badgeContent={props.actionCount} color="warning">
+                        <Chip
+                            icon={props.icon}
+                            label={props.title}
+                            sx={{ fontSize: '1rem', fontWeight: 'bold', borderColor: indigo[200] }}
+                            variant='outlined' />
+                    </Badge>
+                    {props.actionCount > 0 &&
+                        <Chip
+                            label="There are new events"
+                            color="secondary"
+                            size="small"
+                            sx={{
+                                fontWeight: 'bold',
+                                marginLeft: '1rem',
+                                bgcolor: lightGreen['A200'],
+                                fontSize: '0.7rem'
+                            }}
+                        />}
                 </CardContent>
             </CardActionArea>
         </Card>

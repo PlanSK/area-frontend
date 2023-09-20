@@ -10,7 +10,7 @@ export type ToolbarData = {
 
 export function Maintoolbar(props: ToolbarData) {
   return (
-    <AppBar position='static'>
+    <AppBar position='static' sx={{marginBottom: '2px'}}>
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
           <img src="/img/artx_short.png" alt="logo" height={'50px'} style={{margin: '5px'}}/>

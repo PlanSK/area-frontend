@@ -61,7 +61,7 @@ export function Toolbarlink(props: {messagesCount: number}) {
           {tollbarLinks.map((linkItem) => (
             <MenuItem key={linkItem.id} href={linkItem.link}>
               <Typography textAlign="center">
-                {linkItem.title}{linkItem.count > 0 && linkItem.count}
+                {linkItem.title}
               </Typography>
             </MenuItem>
           ))}

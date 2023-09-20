@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Maintoolbar, ToolbarData } from './Maintoolbar';
-import { MainCard } from './MainCard'
+import { DashBoard } from './Dashboard';
 import { StaffDashboard, StaffDashboardPropsType } from './StaffDashboard';
 import { EmployeeDashboard, EmployeeDashboardPropsType } from './EmployeeDashboard';
 
@@ -39,7 +39,7 @@ function App() {
         profileData={data.profileData}
         messagesCount={data.messagesCount}
       />
-      <MainCard />
+      <DashBoard />
     </ThemeProvider>
   );
 }

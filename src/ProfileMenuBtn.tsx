@@ -23,6 +23,16 @@ type MenuItemsType = {
     divider: boolean
 }
 
+function stringAvatar(name: string) {
+    return {
+      sx: {
+        bgcolor: 'disabled',
+      },
+      children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+    };
+  }
+
+
 export function ProfileMenuBtn(props: ProfileDataType) {
     let staffMenuArray: Array<MenuItemsType> = [
         { id: v1(), link: '/admin', icon: <HandymanIcon />, title: 'Панель администрирования', divider: false },
@@ -53,7 +63,7 @@ export function ProfileMenuBtn(props: ProfileDataType) {
                     {props.profileImage ? (
                         <Avatar alt="Profile image" src={props.profileImage} />
                     ) : (
-                        <Avatar>{props.profileName[0]}</Avatar>
+                        <Avatar {...stringAvatar(props.profileName)}/>
                     )}
                 </IconButton>
             </Tooltip>

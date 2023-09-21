@@ -29,7 +29,7 @@ export function DashBoard(props: DashboardPropsType) {
 
     return (
         <Container>
-            <Grid container spacing={2} direction='row' justifyContent="center" sx={{ marginBottom: '5px' }}>
+            <Grid container spacing={2} direction='row' justifyContent="center" sx={{ my: '5px' }}>
                 {dashboardItems.map((dashboardItem) => (
                     <Grid xs={12} sm={12} md={4} key={dashboardItem.id}>
                         <DashboardCard

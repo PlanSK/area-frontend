@@ -13,13 +13,15 @@ export type DashboardCardPropsType = {
 
 export function DashboardCard(props: DashboardCardPropsType) {
     return (
-        <Card sx={{
-            minWidth: 240,
-            borderRadius: 3,
-            border: 'solid 1px',
-            borderColor: indigo[900],
-            background: props.color
-        }} variant='outlined'>
+        <Card
+            sx={{
+                minWidth: 240,
+                borderRadius: 3,
+                border: 'solid 1px',
+                borderColor: indigo[900],
+                background: props.color
+            }}
+        >
             <CardActionArea href={props.link}>
                 <CardContent>
                     <Badge badgeContent={props.actionCount} color="warning">

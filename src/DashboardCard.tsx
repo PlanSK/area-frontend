@@ -15,7 +15,7 @@ export function DashboardCard(props: DashboardCardPropsType) {
     return (
         <Card sx={{
             minWidth: 240,
-            borderRadius: 5,
+            borderRadius: 3,
             border: 'solid 1px',
             borderColor: indigo[900],
             background: props.color

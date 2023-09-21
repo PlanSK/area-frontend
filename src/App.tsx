@@ -4,6 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { Maintoolbar, ToolbarData } from './Maintoolbar';
 import { DashBoard, DashboardPropsType } from './Dashboard';
 import { EmployeeDashboard, EmployeeDashboardPropsType } from './EmployeeDashboard';
+import SignIn from './SignIn';
 
 const darkTheme = createTheme({
     palette: {
@@ -16,7 +17,7 @@ const darkTheme = createTheme({
 
 function App() {
     const data: ToolbarData = {
-        profileData: { profileImage: "", profileName: "Sergey", staffPermissions: true },
+        profileData: { profileImage: "", profileName: "Sergey Petroff", staffPermissions: false },
         messagesCount: 1
     }
     const dashboardData: DashboardPropsType = {
@@ -34,21 +35,28 @@ function App() {
         isCashier: true,
         summaryShortage: 254.84
     }
+    let isAuthorized = true
     return (
         <ThemeProvider theme={darkTheme}>
             <CssBaseline />
-            <Maintoolbar
-                profileData={data.profileData}
-                messagesCount={data.messagesCount}
-            />
-            {data.profileData.staffPermissions ? (
-                <DashBoard
-                    unverifiedWorkshifts={dashboardData.unverifiedWorkshifts}
-                    inactiveUsers={dashboardData.inactiveUsers}
-                    waitExplanationMisconducts={dashboardData.waitExplanationMisconducts}
-                    waitDecisionMisconducts={dashboardData.waitDecisionMisconducts}
-                />) : (
-                <div></div>
+            {isAuthorized ? (
+                <>
+                    <Maintoolbar
+                        profileData={data.profileData}
+                        messagesCount={data.messagesCount}
+                    />
+                    {data.profileData.staffPermissions ? (
+                        <DashBoard
+                            unverifiedWorkshifts={dashboardData.unverifiedWorkshifts}
+                            inactiveUsers={dashboardData.inactiveUsers}
+                            waitExplanationMisconducts={dashboardData.waitExplanationMisconducts}
+                            waitDecisionMisconducts={dashboardData.waitDecisionMisconducts}
+                        />) : (
+                        <EmployeeDashboard />
+                    )}
+                </>
+            ) : (
+                <SignIn />
             )}
         </ThemeProvider>
     );

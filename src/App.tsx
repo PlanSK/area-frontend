@@ -27,13 +27,14 @@ function App() {
         waitDecisionMisconducts: 0
     }
     const employeeData: EmployeeDashboardPropsType = {
-        workshiftsCount: 1,
-        summaryEarnings: 20564.05,
+        workshiftsCount: 10,
+        summaryEarnings: 25604.05,
         penaltySum: 200,
         penaltyCount: 1,
         waitExplanationMisconducts: 1,
         isCashier: true,
-        summaryShortage: 254.84
+        summaryShortage: 254.84,
+        shortageCount: 3
     }
     let isAuthorized = true
     return (
@@ -52,7 +53,16 @@ function App() {
                             waitExplanationMisconducts={dashboardData.waitExplanationMisconducts}
                             waitDecisionMisconducts={dashboardData.waitDecisionMisconducts}
                         />) : (
-                        <EmployeeDashboard />
+                        <EmployeeDashboard
+                            workshiftsCount={employeeData.workshiftsCount}
+                            summaryEarnings={employeeData.summaryEarnings}
+                            penaltySum={employeeData.penaltySum}
+                            penaltyCount={employeeData.penaltyCount}
+                            waitExplanationMisconducts={employeeData.waitExplanationMisconducts}
+                            isCashier={employeeData.isCashier}
+                            summaryShortage={employeeData.summaryShortage}
+                            shortageCount={employeeData.shortageCount}
+                        />
                     )}
                 </>
             ) : (

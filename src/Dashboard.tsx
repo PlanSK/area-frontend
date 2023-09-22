@@ -1,7 +1,6 @@
+import * as React from 'react'
 import { v1 } from "uuid";
 import { Container, Divider } from "@mui/material";
-import Grid from '@mui/material/Unstable_Grid2';
-import { DashboardCard, DashboardCardPropsType } from "./DashboardCard";
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import { purple, red, indigo, cyan } from "@mui/material/colors";
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
@@ -9,6 +8,9 @@ import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
+
+import { DashboardCardsGrid } from "./DashboardCardsGrid";
+import { DashboardCardPropsType } from "./DashboardCard";
 
 export type DashboardPropsType = {
     unverifiedWorkshifts: number,
@@ -29,20 +31,7 @@ export function DashBoard(props: DashboardPropsType) {
 
     return (
         <Container>
-            <Grid container spacing={2} direction='row' justifyContent="center" sx={{ my: '5px' }}>
-                {dashboardItems.map((dashboardItem) => (
-                    <Grid xs={12} sm={12} md={4} key={dashboardItem.id}>
-                        <DashboardCard
-                            id={dashboardItem.id}
-                            icon={dashboardItem.icon}
-                            title={dashboardItem.title}
-                            color={dashboardItem.color}
-                            actionCount={dashboardItem.actionCount}
-                            link={dashboardItem.link}
-                        />
-                    </Grid>
-                ))}
-            </Grid>
+            <DashboardCardsGrid dashboardItems={dashboardItems}/>
             <Divider />
         </Container>
     );

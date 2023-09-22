@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react'
 import { Toolbarlink } from './Toolbarlink';
 import { ProfileMenuBtn, ProfileDataType } from './ProfileMenuBtn';
 import { AppBar, Container, Toolbar } from '@mui/material';

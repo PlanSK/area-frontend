@@ -32,7 +32,7 @@ function App() {
         penaltySum: 200,
         penaltyCount: 1,
         waitExplanationMisconducts: 1,
-        isCashier: true,
+        isCashier: false,
         summaryShortage: 254.84,
         shortageCount: 3
     }

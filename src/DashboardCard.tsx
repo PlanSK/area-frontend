@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { Card, CardContent, CardActionArea, Badge, Chip } from '@mui/material';
 import { indigo, lightGreen } from '@mui/material/colors';
 import { SvgIconComponent } from '@mui/icons-material';
@@ -17,8 +18,6 @@ export function DashboardCard(props: DashboardCardPropsType) {
             sx={{
                 minWidth: 240,
                 borderRadius: 3,
-                border: 'solid 1px',
-                borderColor: indigo[900],
                 background: props.color
             }}
         >

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react'
 import { v1 } from 'uuid';
 import { Box, Menu, MenuItem, Tooltip, Avatar, Divider, ListItemIcon, ListItemText, Link } from '@mui/material';
 import { SvgIconComponent } from '@mui/icons-material';

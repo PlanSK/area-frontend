@@ -1,11 +1,18 @@
-import React from 'react';
+import * as React from 'react'
 import { Container, Divider } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import { v1 } from 'uuid';
-import { IndicatorDashboardCard, IndicatorDashboardCardPropsType } from './IndicatorDashboardCard';
 import CurrencyRubleIcon from '@mui/icons-material/CurrencyRuble';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded';
+import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded';
+import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
+import { red, purple, cyan } from '@mui/material/colors'
+import { IndicatorDashboardCard, IndicatorDashboardCardPropsType } from './IndicatorDashboardCard';
 import { humanizeNumber } from './services';
+import { DashboardCardPropsType } from './DashboardCard';
+import { DashboardCardsGrid } from './DashboardCardsGrid';
+
 
 export type EmployeeDashboardPropsType = {
     workshiftsCount: number
@@ -39,11 +46,17 @@ export function EmployeeDashboard(props: EmployeeDashboardPropsType) {
             { id: v1(), title: 'Shortges count', icon: <EventAvailableIcon />, value: props.shortageCount },
         ]
     })
+
+    let actionsCardsList: Array<DashboardCardPropsType> = [
+        { id: v1(), icon: <CalendarMonthRoundedIcon />, title: "Calendar", color: purple[900], actionCount: 0, link: "/calendar" },
+        { id: v1(), icon: <SchoolRoundedIcon />, title: "Misconducts", color: red[700], actionCount: 0, link: "/misconducts" },
+        { id: v1(), icon: <MenuBookRoundedIcon />, title: "Documents", color: cyan[700], actionCount: 0, link: "/documents" }
+    ]
     return (
         <Container>
             <Grid container spacing={1} direction='row' justifyContent="center" sx={{ my: '5px' }}>
                 {indicatorsDataList.map((item) =>
-                    <Grid md={4}>
+                    <Grid md={4} xs={12} sm={12}>
                         <IndicatorDashboardCard
                             id={item.id}
                             title={item.title}
@@ -53,6 +66,8 @@ export function EmployeeDashboard(props: EmployeeDashboardPropsType) {
                     </Grid>
                 )}
             </Grid>
+            <Divider />
+            <DashboardCardsGrid dashboardItems={actionsCardsList} />
             <Divider />
         </Container>
     )

@@ -1,5 +1,6 @@
+import * as React from 'react'
 import { Card, CardContent, Chip, Typography, Divider, CardHeader } from '@mui/material';
-import { indigo, grey, red } from '@mui/material/colors';
+import { indigo, red } from '@mui/material/colors';
 import { SvgIconComponent } from '@mui/icons-material';
 import Grid from '@mui/material/Unstable_Grid2';
 
@@ -16,8 +17,6 @@ export function IndicatorDashboardCard(props: IndicatorDashboardCardPropsType) {
         <Card sx={{
             minWidth: 240,
             borderRadius: 3,
-            border: 'solid 1px',
-            borderColor: grey[900],
             background: props.isPositive ? indigo[900] : red[900]
         }} key={props.id}>
             <CardHeader
@@ -36,7 +35,7 @@ export function IndicatorDashboardCard(props: IndicatorDashboardCardPropsType) {
                                     sx={{ borderRadius: 2, fontSize: '1rem' }}
                                 />
                             </Grid>
-                            <Grid sx={{textAlign: 'right'}} md>
+                            <Grid sx={{textAlign: 'right'}} md xs sm>
                                 <Typography sx={{ fontStyle: 'italic', fontWeight: 'bold' }} variant='h5'>
                                     {item.value}
                                 </Typography>

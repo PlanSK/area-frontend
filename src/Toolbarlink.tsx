@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react'
 import { v1 } from 'uuid';
 import { Typography, Box, Menu, MenuItem, Button, Badge } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';

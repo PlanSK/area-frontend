@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, {useEffect} from 'react'
 import { v1 } from "uuid";
 import { Container, Divider } from "@mui/material";
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
@@ -20,6 +20,9 @@ export type DashboardPropsType = {
 }
 
 export function DashBoard(props: DashboardPropsType) {
+    useEffect(() => {
+        document.title = 'Главная';
+      });
     const dashboardItems: Array<DashboardCardPropsType> = [
         { id: v1(), icon: <CalendarMonthOutlinedIcon />, title: 'Shifts', color: purple[900], actionCount: props.unverifiedWorkshifts, link: '/workshifts' },
         { id: v1(), icon: <GroupOutlinedIcon />, title: 'Users', color: cyan[700], actionCount: props.inactiveUsers, link: '/users' },
